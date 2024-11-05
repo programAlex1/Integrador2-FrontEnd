@@ -1,0 +1,33 @@
+<div mat-dialog-title>
+    <h1>Usuario Form</h1>
+</div>
+<form [formGroup]="emForm" (ngSubmit)="onFormSubmit()">
+<div mat-dialog-content class="content">
+    <div class="row">
+        <mat-form-field >
+            <mat-label>Nombre</mat-label>
+            <input matInput type="text" placeholder="Alexander" formControlName="name">
+        </mat-form-field>
+        <mat-form-field >
+            <mat-label>Telefono</mat-label>
+            <input matInput placeholder="987654321" formControlName="phone">
+        </mat-form-field>
+    </div>
+    <div class="row">
+        <mat-form-field >
+            <mat-label>Contraseña</mat-label>
+            <input matInput type="password" placeholder="***********" formControlName="password">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Select</mat-label>
+            <mat-select formControlName="role"> 
+                <mat-option *ngFor="let item of roles" [value]="item">{{item}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>    
+</div>
+<div mat-dialog-actions class="action">
+    <button mat-raised-button type="button" class="cancelar">Cancel</button>
+    <button mat-raised-button color="primary" type="submit" class="enviar">Save</button>
+</div>
+</form>
