@@ -13,12 +13,12 @@ export const routes: Routes = [
                 canActivate: [AuthGuard]
             },
             {
-                path: 'profile',
+                path: 'usuario',
                 loadComponent: () => import('./business/profile/profile.component'),
                 canActivate: [AuthGuard]
             },
             {
-                path: 'tables',
+                path: 'cliente',
                 loadComponent: () => import('./business/tables/tables.component'),
                 canActivate: [AuthGuard]
             },

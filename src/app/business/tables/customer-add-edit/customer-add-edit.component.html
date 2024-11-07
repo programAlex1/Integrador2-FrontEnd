@@ -1,5 +1,5 @@
 <div mat-dialog-title>
-    <h1>Formulario Usuario</h1>
+    <h1>Formulario Cliente</h1>
 </div>
 <form [formGroup]="emForm" (ngSubmit)="onFormSubmit()">
 <div mat-dialog-content class="content">
@@ -9,22 +9,26 @@
             <input matInput type="text" placeholder="Alexander" formControlName="name">
         </mat-form-field>
         <mat-form-field >
+            <mat-label>Apellido</mat-label>
+            <input matInput type="text" placeholder="Cortez" formControlName="lastname">
+        </mat-form-field>
+    </div>
+    <div class="row">
+        <mat-form-field >
+            <mat-label>Correo</mat-label>
+            <input matInput type="text" placeholder="test@gmail.com" formControlName="email">
+        </mat-form-field>
+        <mat-form-field >
             <mat-label>Telefono</mat-label>
             <input matInput placeholder="987654321" formControlName="phone">
         </mat-form-field>
     </div>
     <div class="row">
         <mat-form-field >
-            <mat-label>Contraseña</mat-label>
-            <input matInput type="password" placeholder="***********" formControlName="password">
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Select</mat-label>
-            <mat-select formControlName="role"> 
-                <mat-option *ngFor="let item of roles" [value]="item">{{item}}</mat-option>
-            </mat-select>
-        </mat-form-field>
-    </div>    
+            <mat-label>Direccion</mat-label>
+            <input matInput type="text" placeholder="Av..." formControlName="address">
+        </mat-form-field>       
+    </div>        
 </div>
 <div mat-dialog-actions class="action">
     <button mat-raised-button type="button" class="cancelar" [mat-dialog-close]="false">Cancel</button>

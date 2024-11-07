@@ -7,33 +7,32 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule,MatOption } from '@angular/material/select';
 import { NgFor } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule}  from '@angular/forms';
-import { UserService } from '../../../core/services/user.service';
-import { error } from 'console';
 import { DialogRef } from '@angular/cdk/dialog';
 import { MatDialogRef,MatDialog,MatDialogModule, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { CustomerService } from '../../../core/services/customer.service';
+
 @Component({
-  selector: 'app-emp-add-edit',
+  selector: 'app-customer-add-edit',
   standalone: true,
   imports: [MatFormFieldModule,MatInputModule,MatToolbarModule,MatIconModule,MatButtonModule,MatSelectModule,MatOption,NgFor,ReactiveFormsModule,MatDialogModule],
-  templateUrl: './emp-add-edit.component.html',
-  styleUrl: './emp-add-edit.component.css',
+  templateUrl: './customer-add-edit.component.html',
+  styleUrl: './customer-add-edit.component.css',
   encapsulation: ViewEncapsulation.ShadowDom,
 })
-export class EmpAddEditComponent implements OnInit{
+export class CustomerAddEditComponent implements OnInit{
   emForm: FormGroup;
-  roles: string[] = ['Admin', 'Vendedor'];
 
-  constructor(private _fb : FormBuilder, private _userService: UserService, private _dialogRef:MatDialogRef<EmpAddEditComponent>,
+  constructor(private _fb : FormBuilder, private _customerService: CustomerService, private _dialogRef:MatDialogRef<CustomerAddEditComponent>,
     @Inject(MAT_DIALOG_DATA) public data :any
   ){
     this.emForm = this._fb.group({
       name : '' ,
-      password : '' ,
-      phone: '' ,
-      role : ''
+      lastname : '' ,
+      email: '' ,
+      phone : '',
+      address : '',
     })
   }
-
   ngOnInit(): void {
     this.emForm.patchValue(this.data);
   }
@@ -41,9 +40,9 @@ export class EmpAddEditComponent implements OnInit{
   onFormSubmit(){
     if(this.emForm.valid){
       if(this.data){
-        this._userService.updateUser(this.data.user_id,this.emForm.value).subscribe({
+        this._customerService.updateCustomer(this.data.id,this.emForm.value).subscribe({
           next : (val : any) => {
-            alert('Usuario editado correctamente')
+            alert('Cliente editado correctamente')
             this._dialogRef.close(true)
           },
           error : (err : any) => {
@@ -51,9 +50,9 @@ export class EmpAddEditComponent implements OnInit{
           }
         })
       }else{      
-      this._userService.addUser(this.emForm.value).subscribe({
+      this._customerService.addCustomer(this.emForm.value).subscribe({
         next : (val: any) =>{
-          alert('Usuario registrado con exito')
+          alert('Cliente registrado con exito')
           this._dialogRef.close(true)
         },
         error: (err) => {
@@ -63,4 +62,6 @@ export class EmpAddEditComponent implements OnInit{
       }
     }
   }
+
+
 }

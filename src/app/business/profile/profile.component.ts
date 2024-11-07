@@ -3,7 +3,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { EmpAddEditComponent } from './emp-add-edit/emp-add-edit.component';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog ,MatDialogRef} from '@angular/material/dialog';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -18,6 +18,7 @@ import { MatSortModule,MatSort } from '@angular/material/sort';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { UserService } from '../../core/services/user.service';
+import { error } from 'node:console';
 @Component({
   selector: 'app-profile',
   standalone: true,
@@ -44,7 +45,7 @@ import { UserService } from '../../core/services/user.service';
 })
 export default class ProfileComponent implements OnInit{
 
-  displayedColumns: string[] = ['user_id', 'name', 'phone', 'password','role'];
+  displayedColumns: string[] = ['user_id', 'name', 'phone','role','action'];
   dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -59,7 +60,14 @@ export default class ProfileComponent implements OnInit{
   }
  
   openAddEditEmpForm() {
-    const dialogRef = this._dialog.open(EmpAddEditComponent);    
+    const dialogRef = this._dialog.open(EmpAddEditComponent); 
+    dialogRef.afterClosed().subscribe({
+      next : (val) =>{
+        if(val){
+          this.getUserList();
+        }
+      }
+    })   
   }
 
   getUserList(){
@@ -82,5 +90,28 @@ export default class ProfileComponent implements OnInit{
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  deleteUser(id:number){
+    this._userService.deleteUser(id).subscribe({
+      next : (res) => {
+        alert("Usuario eliminado!")
+        this.getUserList();
+      },
+      error : console.log,
+    })
+  }
+
+  openEditForm(data: any) {
+    const dialogRef = this._dialog.open(EmpAddEditComponent,{
+      data,
+    });
+    dialogRef.afterClosed().subscribe({
+      next : (val) =>{
+        if(val){
+          this.getUserList();
+        }
+      }
+    })         
   }
 }

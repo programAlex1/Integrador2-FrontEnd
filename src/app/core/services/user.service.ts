@@ -8,6 +8,11 @@ import { Observable } from 'rxjs';
 export class UserService {
 
   constructor(private _http:HttpClient) { }
+  
+
+  updateUser(id:number,data:any): Observable<any>{
+    return this._http.put(`http://localhost:8080/api/v1/auth/update/${id}`,data)
+  }
 
   addUser(data:any): Observable<any>{
     return this._http.post('http://localhost:8080/api/v1/auth/save',data)
@@ -15,5 +20,9 @@ export class UserService {
   getUserList(): Observable<any>{
     return this._http.get('http://localhost:8080/api/v1/auth/list')
 
+  }
+
+  deleteUser(id:number): Observable<any>{
+    return this._http.delete(`http://localhost:8080/api/v1/auth/delete/${id}`);
   }
 }
