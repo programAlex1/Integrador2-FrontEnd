@@ -1,4 +1,4 @@
-import { Component,Inject,OnInit,ViewEncapsulation} from '@angular/core';
+import { Component ,Inject,OnInit,ViewEncapsulation} from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -9,25 +9,25 @@ import { NgFor } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule}  from '@angular/forms';
 import { DialogRef } from '@angular/cdk/dialog';
 import { MatDialogRef,MatDialog,MatDialogModule, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { CustomerService } from '../../../core/services/customer.service';
+import { SupplierService } from '../../../core/services/supplier.service';
 
 @Component({
-  selector: 'app-customer-add-edit',
+  selector: 'app-supplier-add-edit',
   standalone: true,
   imports: [MatFormFieldModule,MatInputModule,MatToolbarModule,MatIconModule,MatButtonModule,MatSelectModule,MatOption,NgFor,ReactiveFormsModule,MatDialogModule],
-  templateUrl: './customer-add-edit.component.html',
-  styleUrl: './customer-add-edit.component.css',
+  templateUrl: './supplier-add-edit.component.html',
+  styleUrl: './supplier-add-edit.component.css',
   encapsulation: ViewEncapsulation.ShadowDom,
 })
-export class CustomerAddEditComponent implements OnInit{
+export class SupplierAddEditComponent implements OnInit{
   emForm: FormGroup;
 
-  constructor(private _fb : FormBuilder, private _customerService: CustomerService, private _dialogRef:MatDialogRef<CustomerAddEditComponent>,
+  constructor(private _fb : FormBuilder, private _supplierService: SupplierService, private _dialogRef:MatDialogRef<SupplierAddEditComponent>,
     @Inject(MAT_DIALOG_DATA) public data :any
   ){
     this.emForm = this._fb.group({
       name : '' ,
-      lastname : '' ,
+      nameContact : '' ,
       email: '' ,
       phone : '',
       address : '',
@@ -40,7 +40,7 @@ export class CustomerAddEditComponent implements OnInit{
   onFormSubmit(){
     if(this.emForm.valid){
       if(this.data){
-        this._customerService.updateCustomer(this.data.id,this.emForm.value).subscribe({
+        this._supplierService.updateSupplier(this.data.id,this.emForm.value).subscribe({
           next : (val : any) => {
             alert('Cliente editado correctamente')
             this._dialogRef.close(true)
@@ -50,7 +50,7 @@ export class CustomerAddEditComponent implements OnInit{
           }
         })
       }else{      
-      this._customerService.addCustomer(this.emForm.value).subscribe({
+      this._supplierService.addSupplier(this.emForm.value).subscribe({
         next : (val: any) =>{
           alert('Cliente registrado con exito')
           this._dialogRef.close(true)
@@ -62,6 +62,5 @@ export class CustomerAddEditComponent implements OnInit{
       }
     }
   }
-
 
 }
