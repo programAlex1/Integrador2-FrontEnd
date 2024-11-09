@@ -1,0 +1,43 @@
+<div mat-dialog-title>
+    <h1>Formulario Producto</h1>
+</div>
+<form [formGroup]="emForm" (ngSubmit)="onFormSubmit()">
+<div mat-dialog-content class="content">
+    <div class="row">
+        <mat-form-field >
+            <mat-label>Nombre</mat-label>
+            <input matInput type="text" placeholder="Alexander" formControlName="name">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Select</mat-label>
+            <mat-select formControlName="type"> 
+                <mat-option *ngFor="let item of type" [value]="item">{{item}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="row">
+        <mat-form-field >
+            <mat-label>Stock</mat-label>
+            <input matInput type="number" placeholder="1,2,3,4,5" formControlName="stock">
+        </mat-form-field>
+        <mat-form-field >
+            <mat-label>Precio Unitario</mat-label>
+            <input matInput type="number" placeholder="20.0,30.0" formControlName="priceUnit">
+        </mat-form-field>
+    </div>
+    <div class="row">
+        <mat-form-field>
+            <mat-label>Select</mat-label>
+            <mat-select [formControl]="idSupplierControl"> 
+                <mat-option *ngFor="let supplier of suppliers" [value]="supplier.id">
+                    {{ supplier.name }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>             
+    </div>        
+</div>
+<div mat-dialog-actions class="action">
+    <button mat-raised-button type="button" class="cancelar" [mat-dialog-close]="false">Cancel</button>
+    <button mat-raised-button color="primary" type="submit" class="enviar">{{data ? 'Update' : 'Save'}}</button>
+</div>
+</form>
