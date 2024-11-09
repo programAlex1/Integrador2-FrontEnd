@@ -33,6 +33,11 @@ export const routes: Routes = [
                 canActivate: [AuthGuard]
             },
             {
+                path: 'proforma',
+                loadComponent: () => import('./business/form-event/form-event.component'),
+                canActivate: [AuthGuard]
+            },
+            {
                 path: '',
                 redirectTo: 'dashboard',
                 pathMatch: 'full'

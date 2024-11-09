@@ -19,7 +19,7 @@
             <input matInput type="password" placeholder="***********" formControlName="password">
         </mat-form-field>
         <mat-form-field>
-            <mat-label>Select</mat-label>
+            <mat-label>Roles</mat-label>
             <mat-select formControlName="role"> 
                 <mat-option *ngFor="let item of roles" [value]="item">{{item}}</mat-option>
             </mat-select>

@@ -26,10 +26,10 @@ export default class LoginComponent {
         const token = response.token;
         const payload = JSON.parse(atob(token.split('.')[1]));
         const role = payload.role;
-        if(role === 'admin') {
+        if(role === 'Admin') {
           this.router.navigate(['/dashboard'])
         }else {
-          this.router.navigate(['/profile'])
+          this.router.navigate(['/cliente'])
         }
       },
       error: (err) => console.error('Login failed', err)

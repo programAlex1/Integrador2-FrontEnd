@@ -1,0 +1,69 @@
+<div mat-dialog-title>
+    <h1>Formulario Proforma</h1>
+</div>
+<form [formGroup]="emForm" (ngSubmit)="onFormSubmit()">
+<div mat-dialog-content class="content">
+    <div class="row">
+        <mat-form-field >
+            <mat-label>Nombre</mat-label>
+            <input matInput type="text" placeholder="Alexander" formControlName="name">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Tipos</mat-label>
+            <mat-select formControlName="type"> 
+                <mat-option *ngFor="let item of type" [value]="item">{{item}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="row">
+        <mat-form-field >
+            <mat-label>Asistentes</mat-label>
+            <input matInput type="number" placeholder="1,2,3,4,5" formControlName="numberAssistants">
+        </mat-form-field>
+        <mat-form-field >
+            <mat-label>Precio</mat-label>
+            <input matInput type="number" placeholder="20.0,30.0" formControlName="price">
+        </mat-form-field>
+    </div>
+    <div class="row">
+        <mat-form-field >
+            <mat-label>Locacion</mat-label>
+            <input matInput type="text" placeholder="Alexander" formControlName="location">
+        </mat-form-field> 
+        <mat-form-field>
+            <mat-label>Fecha</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="date">
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>            
+    </div> 
+    <div class="row">
+        <mat-form-field>
+            <mat-label>Clientes</mat-label>
+            <mat-select [formControl]="idCustomerControl"> 
+                <mat-option *ngFor="let customer of customers" [value]="customer.id">
+                    {{ customer.name }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field >
+            <mat-label>Descripcion</mat-label>
+            <input matInput type="text" placeholder="Alexander" formControlName="description">
+        </mat-form-field>             
+    </div>
+    <div class="row">
+        <mat-form-field>
+          <mat-label>Productos</mat-label>
+          <mat-select formControlName="productsList" multiple>
+            <mat-option *ngFor="let product of products" [value]="product.id">
+              {{ product.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>        
+</div>
+<div mat-dialog-actions class="action">
+    <button mat-raised-button type="button" class="cancelar" [mat-dialog-close]="false">Cancel</button>
+    <button mat-raised-button color="primary" type="submit" class="enviar">{{data ? 'Update' : 'Save'}}</button>
+</div>
+</form>
