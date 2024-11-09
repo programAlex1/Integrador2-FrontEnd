@@ -17,6 +17,7 @@ import { MatSortModule,MatSort } from '@angular/material/sort';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ProductoService } from '../../core/services/producto.service';
 import { ProductAddEditComponent } from './product-add-edit/product-add-edit.component';
+import { ProductStockComponent } from './product-stock/product-stock.component';
 
 @Component({
   selector: 'app-product',
@@ -77,6 +78,19 @@ export default class ProductComponent {
         }
       }
     })   
+  }
+
+  openStockForm(data:any) {
+    const dialogRef = this._dialog.open(ProductStockComponent,{
+      data,
+    });
+    dialogRef.afterClosed().subscribe({
+      next : (val) =>{
+        if(val){
+          this.getProductList();
+        }
+      }
+    })    
   }
 
   deleteProduct(id:number){

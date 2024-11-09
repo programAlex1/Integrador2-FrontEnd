@@ -24,6 +24,12 @@ export class ProductoService {
     });
   }
 
+  updateStockProduct(id: number, data: any): Observable<any> {
+    return this._http.patch(`${this.apiUrl}/${id}`, data, {
+      headers: this.getAuthHeaders()
+    });
+  }
+
   addProduct(data: any): Observable<any> {
     return this._http.post(this.apiUrl, data, {
       headers: this.getAuthHeaders()

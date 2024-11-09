@@ -1,0 +1,17 @@
+<div mat-dialog-title>
+    <h1>Agregar Stock</h1>
+</div>
+<form [formGroup]="emForm" (ngSubmit)="onFormSubmit()">
+<div mat-dialog-content class="content">
+    <div class="row">
+        <mat-form-field >
+            <mat-label>Stock</mat-label>
+            <input matInput type="number" placeholder="1,2,3,4,5" formControlName="stock">
+        </mat-form-field>        
+    </div>          
+</div>
+<div mat-dialog-actions class="action">
+    <button mat-raised-button type="button" class="cancelar" [mat-dialog-close]="false">Cancel</button>
+    <button mat-raised-button color="primary" type="submit" class="enviar">Update</button>
+</div>
+</form>
