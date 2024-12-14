@@ -7,10 +7,10 @@ import { BehaviorSubject, Observable, tap } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  private LOGIN_URL = 'http://localhost:8080/api/v1/auth/login';
+  private LOGIN_URL = 'https://integrador2-backend-production.up.railway.app/api/v1/auth/login';
   private tokenKey = 'authToken';
 
-  private REFRESH_URL = 'http://localhost:8080/api/v1/auth/refresh';
+  private REFRESH_URL = 'https://integrador2-backend-production.up.railway.app/api/v1/auth/refresh';
   private refreshTokenKey = 'refreshToken';
 
   private roleSubject = new BehaviorSubject<string | null>(null);

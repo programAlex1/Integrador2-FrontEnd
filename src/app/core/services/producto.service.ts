@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ProductoService {
 
-  private apiUrl = 'http://localhost:8080/api/v1/product';
+  private apiUrl = 'https://integrador2-backend-production.up.railway.app/api/v1/product';
 
   constructor(private _http: HttpClient) {}
 

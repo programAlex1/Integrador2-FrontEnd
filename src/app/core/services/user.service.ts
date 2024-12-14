@@ -11,18 +11,18 @@ export class UserService {
   
 
   updateUser(id:number,data:any): Observable<any>{
-    return this._http.put(`http://localhost:8080/api/v1/auth/update/${id}`,data)
+    return this._http.put(`https://integrador2-backend-production.up.railway.app/api/v1/auth/update/${id}`,data)
   }
 
   addUser(data:any): Observable<any>{
-    return this._http.post('http://localhost:8080/api/v1/auth/save',data)
+    return this._http.post('https://integrador2-backend-production.up.railway.app/api/v1/auth/save',data)
   }
   getUserList(): Observable<any>{
-    return this._http.get('http://localhost:8080/api/v1/auth/list')
+    return this._http.get('https://integrador2-backend-production.up.railway.app/api/v1/auth/list')
 
   }
 
   deleteUser(id:number): Observable<any>{
-    return this._http.delete(`http://localhost:8080/api/v1/auth/delete/${id}`);
+    return this._http.delete(`https://integrador2-backend-production.up.railway.app/api/v1/auth/delete/${id}`);
   }
 }

@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class FormEventService {
 
-  private apiUrl = 'http://localhost:8080/api/v1/event';
+  private apiUrl = 'https://integrador2-backend-production.up.railway.app/api/v1/event';
 
   constructor(private _http: HttpClient) {}
 
